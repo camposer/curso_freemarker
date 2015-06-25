@@ -19,7 +19,7 @@
 		</#if>
 
 		<form action="guardar" method="post" class="form-horizontal">
-			<input type="hidden" id="productoId">
+			<input type="hidden" name="productoId" value="${producto.id!}">
 
 			<div class="form-group">
 				<label for="nombre" class="col-sm-2 control-label">Nombre</label>
@@ -63,8 +63,8 @@
 					<td>${p.id}</td>
 					<td>${p.nombre}</td>
 					<td>${p.precio}</td>
-					<td><a href="#">mostrar</a></td>
-					<td><a href="#">eliminar</a></td>
+					<td><a href="mostrar?id=${p.id}">mostrar</a></td>
+					<td><a href="eliminar?id=${p.id}">eliminar</a></td>
 				</tr>
 				</#list>
 			</tbody>

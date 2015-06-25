@@ -30,6 +30,11 @@ public class GuardarServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		try {
+			producto.setId(Long.parseLong(request.getParameter("productoId")));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		if (producto.getNombre() == null || producto.getNombre().trim().length() < 3)
 			errores.add("Nombre inválido");
@@ -38,7 +43,10 @@ public class GuardarServlet extends HttpServlet {
 		
 		if (errores.size() == 0) {
 			try {
-				productoService.agregarProducto(producto);
+				if (producto.getId() != null)
+					productoService.modificarProducto(producto);
+				else
+					productoService.agregarProducto(producto);
 			} catch (Exception e) {
 				e.printStackTrace();
 				errores.add("Error al guardar el producto");
